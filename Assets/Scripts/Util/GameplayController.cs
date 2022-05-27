@@ -33,7 +33,7 @@ public class GameplayController : MonoBehaviour {
         if(instance == null) {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        } 
+        }
     }
 
     void StartSpawning() {
@@ -74,7 +74,6 @@ public class GameplayController : MonoBehaviour {
 
 
 } // class
-
 
 
 

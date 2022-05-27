@@ -14,13 +14,14 @@ public class DeathScoreMenu : MonoBehaviour
     // Start is called before the first frame update
     void Awake ()
     {
-        
+        DontDestroyOnLoad(DeathScore);
         DeathScore.text = "Your Score was: " + GameplayController.instance.scoreCount;
         
     }
 
     public void ReturnToMainMenu()
     {
+        GameplayController.instance.scoreCount = 0;
         SceneManager.LoadScene(0);
 
     }

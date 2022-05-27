@@ -10,7 +10,7 @@ public class MenuButtons : MonoBehaviour
 
     public void PlayeGame()
     {
-        GameplayController.instance.scoreCount = 0;
+     
         SceneManager.LoadScene(1);
         
     }
