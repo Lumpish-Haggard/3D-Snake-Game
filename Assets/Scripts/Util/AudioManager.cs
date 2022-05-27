@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour {
     void MakeInstance() {
         if(instance == null) {
             instance = this;
+            DontDestroyOnLoad(instance);
         }
     }
 

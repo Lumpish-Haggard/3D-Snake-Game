@@ -12,8 +12,9 @@ public class GameplayController : MonoBehaviour {
     private float min_X = -4.25f, max_X = 4.25f, min_Y = -2.26f, max_Y = 2.26f;
     private float z_Pos = 5.8f;
 
-    private Text score_Text;
-    private int scoreCount;
+    private static Text score_Text;
+    
+    public int scoreCount;
 
 	void Awake () {
         MakeInstace();
@@ -24,12 +25,15 @@ public class GameplayController : MonoBehaviour {
 
         Invoke("StartSpawning", 0.5f);
 
+
+
     }
 	
     void MakeInstace() {
         if(instance == null) {
             instance = this;
-        }
+            DontDestroyOnLoad(gameObject);
+        } 
     }
 
     void StartSpawning() {
@@ -62,9 +66,12 @@ public class GameplayController : MonoBehaviour {
     }
 
     public void IncreaseScore() {
+        DontDestroyOnLoad(score_Text);
         scoreCount++;
         score_Text.text = "Score: " + scoreCount;
+
     }
+
 
 } // class
 

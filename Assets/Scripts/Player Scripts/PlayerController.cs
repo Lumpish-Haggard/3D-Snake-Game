@@ -1,8 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+
 
 public class PlayerController : MonoBehaviour {
+
 
     [HideInInspector]
     public PlayerDirection direction;
@@ -29,7 +34,9 @@ public class PlayerController : MonoBehaviour {
 
     private bool create_Node_At_Tail;
 
+
 	void Awake () {
+
 
         tr = transform;
         main_Body = GetComponent<Rigidbody>();
@@ -205,11 +212,22 @@ public class PlayerController : MonoBehaviour {
 
         if(target.tag == Tags.WALL || target.tag == Tags.BOMB || target.tag == Tags.TAIL) {
 
-            Time.timeScale = 0f;
-
-            AudioManager.instance.Play_DeadSound();
+            StartCoroutine(PlayerDeath());
 
         }
+
+        IEnumerator PlayerDeath()
+        {
+            
+            AudioManager.instance.Play_DeadSound();
+            movement_Frequency = 10000f;
+            yield return new WaitForSeconds(2);
+            StopAllCoroutines();
+            SceneManager.LoadScene(2);
+
+        }
+
+
 
 	}
 
